@@ -1,0 +1,13 @@
+.not-found {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.not-found h2 {
+    margin-bottom: 20px;
+}
+
+.not-found a {
+    text-decoration: none;
+    font-weight: 500;
+}

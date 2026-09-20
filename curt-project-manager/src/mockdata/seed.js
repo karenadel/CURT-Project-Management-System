@@ -50,6 +50,7 @@ export const TASKS=[
     {
         Id:"t1",
         projectId:PROJECTS[0].Id,
+        title:"Deployment",
         description:"finalize the deployment",
         priority:PRIORITIES[1],
         status:STATUSES[1],
@@ -57,6 +58,7 @@ export const TASKS=[
     },{
         Id:"t2",
         projectId:PROJECTS[0].Id,
+        title:"Testing",
         description:"test the site",
         priority:PRIORITIES[2],
         status:STATUSES[0],
@@ -64,6 +66,7 @@ export const TASKS=[
     },{
         Id:"t3",
         projectId:PROJECTS[1].Id,
+        title:"Searching",
         description:"look into resources",
         priority:PRIORITIES[2],
         status:STATUSES[2],
@@ -71,6 +74,7 @@ export const TASKS=[
     },{
         Id:"t4",
         projectId:PROJECTS[1].Id,
+        title:"Report",
         description:"fix the report's formatting",
         priority:PRIORITIES[0],
         status:STATUSES[0],
