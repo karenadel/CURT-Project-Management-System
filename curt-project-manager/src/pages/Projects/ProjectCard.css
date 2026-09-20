@@ -1,0 +1,57 @@
+.project-card {
+    display: block;
+    background-color: #fff5f8;
+    border: 1px solid #f3c6d5;
+    border-radius: 14px;
+    padding: 20px;
+    color: #3d2630;
+    box-shadow: 0 2px 8px rgba(180, 80, 120, 0.08);
+    transition: 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    border-color: #e8a5bb;
+    box-shadow: 0 6px 16px rgba(180, 80, 120, 0.15);
+}
+
+.project-card h3 {
+    margin: 0 0 10px;
+    color: #9d3d61;
+    font-size: 21px;
+}
+
+.project-card p {
+    margin: 8px 0;
+    color: #6b4a56;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.project-card .project-description {
+    margin-bottom: 16px;
+    color: #5b3d48;
+}
+
+.project-card .project-progress {
+    font-weight: 600;
+    color: #8f3155;
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: #f4b8cc;
+    color: #7a2344;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.project-card a:hover {
+    background-color: #e8a5bb;
+    color: #6b1f3c;
+}

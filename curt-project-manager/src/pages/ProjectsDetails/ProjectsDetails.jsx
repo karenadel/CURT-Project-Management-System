@@ -26,7 +26,7 @@ function ProjectsDetails() {
         <h4>progress: {getProjectProgress(project.Id)}%</h4>
         <div>
             {tasks.map(task => (
-                <TaskCard key={task.id} task={task} />
+                <TaskCard key={task.id} task={task} showProject={false} />
             ))}
         </div>
         <Link to="/projects">Back to projects</Link>

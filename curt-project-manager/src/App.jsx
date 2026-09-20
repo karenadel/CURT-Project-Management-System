@@ -1,22 +1,19 @@
 import Layout from "./components/layout/Layout";
-
 import Projects from "./pages/Projects/Projects";
 import ProjectsDetails from "./pages/ProjectsDetails/ProjectsDetails";
 import Tasks from "./pages/Tasks/Tasks";
 import TasksDetails from "./pages/TasksDetails/TasksDetails";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./components/common/NotFound";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="*" element=/>    make a page not found for anyy invalid url
-        
-        we also need sth that handles a valid id but if theres no page to render
-        */}
-        <Route path="/" element={<Login/>}/>
+        <Route path="*" element={<NotFound message="Page not found." backTo="/projects"/>}/>
+        <Route path="/" element={<Navigate to="/projects" replace />} />
 
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>

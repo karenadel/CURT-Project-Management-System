@@ -2,10 +2,10 @@ import "./TaskCard.css"
 import {Link} from "react-router-dom"
 import StatusBadge from "../../components/common/StatusBadge"
 import PriorityBadge from "../../components/common/PriorityBadge"
-import {getUserById} from "../../utils/helpers"
+import {getUserById,getProjectById} from "../../utils/helpers"
 
 
-function TaskCard({task}){
+function TaskCard({task,showProject=false}){
     return(
         <Link className="task-card" to={`/tasks/${task.Id}`}>
             <div>
@@ -18,6 +18,7 @@ function TaskCard({task}){
                     Assigned to:{" "}
                     {task.assignedTo ? getUserById(task.assignedTo)?.name : "Unassigned"}
                 </h4>
+                {showProject && (<h4>Project: {getProjectById(task.projectId)?.name || "Unknown"}</h4>)}
             </div>
         </Link>
     );
