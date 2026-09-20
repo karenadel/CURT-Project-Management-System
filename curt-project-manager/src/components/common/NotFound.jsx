@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./NotFound.css";
 
-function NotFound({ message, backTo }) {
+function NotFound({message,backTo}) {
     return (
         <div>
             <h2>{message}</h2>

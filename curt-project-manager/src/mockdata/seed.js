@@ -9,22 +9,22 @@ export const USERS =[
         password:"123123"
     },{
         Id:"u2",
-        name:"laila",
+        name:"Laila",
         email:"laila@example.com",
         password:"456456"
     },{
         Id:"u3",
-        name:"clara",
+        name:"Clara",
         email:"clara@example.com",
         password:"789789"
     },{
         Id:"u4",
-        name:"fady",
+        name:"Fady",
         email:"fady@example.com",
         password:"123456"
     },{
         Id:"u5",
-        name:"kero",
+        name:"Kero",
         email:"kero@example.com",
         password:"456789"
     }
