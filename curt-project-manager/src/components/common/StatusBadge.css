@@ -1,0 +1,30 @@
+.status-todo,
+.status-in-progress,
+.status-done,
+.status-default {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status-todo {
+    background-color: #f1f1f1;
+    color: #555;
+}
+
+.status-in-progress {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-done {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-default {
+    background-color: #e0e0e0;
+    color: #666;
+}

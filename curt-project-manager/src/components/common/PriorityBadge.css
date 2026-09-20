@@ -1,0 +1,26 @@
+.priority-low,
+.priority-medium,
+.priority-high,
+.priority-default {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.priority-low {
+    background-color: #d4edda;
+    color: #155724;
+}
+.priority-medium {
+    background-color: #fff3cd;
+    color: #856404;
+}
+.priority-high {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.priority-default {
+    background-color: #e0e0e0;
+    color: #666;
+}
