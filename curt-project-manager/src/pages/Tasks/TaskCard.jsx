@@ -1,3 +1,4 @@
+import "./TaskCard.css"
 import {Link} from "react-router-dom"
 import {StatusBadge} from "../../components/common/StatusBadge"
 import {PriorityBadge} from "../../components/common/PriorityBadge"
@@ -6,10 +7,10 @@ import {getProjectById} from "../../utils/helpers"
 
 function TaskCard({task}){
     return(
-        <Link to={`/tasks/${task.id}`}>
+        <Link className="task-card" to={`/tasks/${task.id}`}>
             <div>
                 <h3>{task.title}</h3>
-                <div>
+                <div className="task-card-badges">
                     <StatusBadge status={task.status} />
                     <PriorityBadge priority={task.priority} />
                 </div>

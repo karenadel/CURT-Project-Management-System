@@ -8,23 +8,19 @@
     font-size: 14px;
     font-weight: 500;
 }
-
 .status-todo {
-    background-color: #f1f1f1;
-    color: #555;
+    background-color: #fce7f3;
+    color: #9d3d61;
 }
-
 .status-in-progress {
-    background-color: #fff3cd;
-    color: #856404;
+    background-color: #f9d8e5;
+    color: #8f3155;
 }
-
 .status-done {
-    background-color: #d4edda;
-    color: #155724;
+    background-color: #f4b8cc;
+    color: #7a2344;
 }
-
 .status-default {
-    background-color: #e0e0e0;
-    color: #666;
+    background-color: #eeeeee;
+    color: #666666;
 }

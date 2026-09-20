@@ -9,16 +9,16 @@
     font-weight: 500;
 }
 .priority-low {
-    background-color: #d4edda;
-    color: #155724;
+    background-color: #fce7f3;
+    color: #9d3d61;
 }
 .priority-medium {
-    background-color: #fff3cd;
-    color: #856404;
+    background-color: #f9d8e5;
+    color: #8f3155;
 }
 .priority-high {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #f4b8cc;
+    color: #7a2344;
 }
 .priority-default {
     background-color: #e0e0e0;
