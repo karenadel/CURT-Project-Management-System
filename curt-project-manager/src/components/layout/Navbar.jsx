@@ -1,17 +1,23 @@
-import {Link} from "react-router-dom";
-function Navbar(){
-    return(
+import { Link,NavLink } from "react-router-dom";
+function Navbar() {
+    return (
         <nav>
-            <div>
-                <Link to="/projects">Project Manager</Link>
-            </div>
+        <Link to="/projects">Project Manager</Link>
 
-            <div>
-                <Link to="/projects">Projects</Link>
-                <Link to="/tasks">Tasks</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-            </div>
+        <div>
+            <NavLink to="/projects" className={({isActive}) => (isActive ? "active" : "")}>
+                Projects
+            </NavLink>
+            <NavLink to="/tasks" className={({isActive}) => (isActive ? "active" : "")}>
+                Tasks
+            </NavLink>
+            <NavLink to="/login" className={({isActive}) => (isActive ? "active" : "")}>
+                Login
+            </NavLink>
+            <NavLink to="/signup" className={({isActive}) => (isActive ? "active" : "")}>
+                Sign Up
+            </NavLink>
+        </div>
         </nav>
     );
 }

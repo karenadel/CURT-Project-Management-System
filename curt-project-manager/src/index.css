@@ -16,7 +16,15 @@ nav div {
   align-items: center;
   gap: 24px;
 }
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
 
+nav a.active {
+  color: blue;
+  font-weight: 600;
+}
 main {
   padding: 24px;
 }
