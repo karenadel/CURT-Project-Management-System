@@ -1,3 +1,5 @@
+import Layout from "./components/layout/Layout";
+
 import Projects from "./pages/Projects/Projects";
 import ProjectsDetails from "./pages/ProjectsDetails/ProjectsDetails";
 import Tasks from "./pages/Tasks/Tasks";
@@ -14,17 +16,18 @@ function App() {
         
         we also need sth that handles a valid id but if theres no page to render
         */}
-
         <Route path="/" element={<Login/>}/>
 
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
 
-        <Route path="/projects" element={<Projects/>}/>
-        <Route path="/projects/:projectId" element={<ProjectsDetails/>}/>
+        <Route element={<Layout/>}>
+          <Route path="/projects" element={<Projects/>}/>
+          <Route path="/projects/:projectId" element={<ProjectsDetails/>}/>
 
-        <Route path="/tasks" element={<Tasks/>}/>
-        <Route path="/tasks/:taskId" element={<TasksDetails/>}/>
+          <Route path="/tasks" element={<Tasks/>}/>
+          <Route path="/tasks/:taskId" element={<TasksDetails/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 
 function ProjectsDetails() {
-    return ();
+    return (<></>);
 }
 
 export default ProjectsDetails;

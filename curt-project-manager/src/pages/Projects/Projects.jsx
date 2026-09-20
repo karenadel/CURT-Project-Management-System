@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 
 
 function projects() {
-    return (
-        
-    );
+    return (<></>);
 }
 
 export default projects;
