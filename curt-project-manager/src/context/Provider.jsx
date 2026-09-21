@@ -6,7 +6,7 @@ export function Provider({ children }) {
     const [tasks, setTasks] = useState(() => getTasks());
     const [users, setUsers] = useState(() => getUsers());
 
-    const value = { projects, setProjects, tasks, setTasks, users, setUsers };
+    const value = { projects, setProjects, tasks, setTasks, users, setUsers, addProject};
 
     useEffect(()=>{
         saveData("PROJECTS", projects);
@@ -17,6 +17,19 @@ export function Provider({ children }) {
     useEffect(()=>{
         saveData("USERS", users);
     },[users]);
+
+    function addProject({ name, description }) {
+        const newProject = {
+            Id: crypto.randomUUID(),
+            name: name.trim(),
+            description: description?.trim() || "",
+            ownerId: "u1",
+            memberIds: []
+        };
+        setProjects((prev) => [...prev, newProject]);
+        return newProject; 
+    }
+    
 
     return (
         <Context.Provider value={value}>
