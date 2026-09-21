@@ -41,6 +41,28 @@ export function Provider({ children }) {
         setProjects((prev) => prev.filter((project) => project.Id !== projectId));
         setTasks((prev) => prev.filter((task) => task.projectId !== projectId));
     }
+    function addTask({
+        title,
+        description,
+        projectId,
+        assignedTo,
+        status,
+        priority
+    }) {
+        const newTask = {
+            Id: crypto.randomUUID(),
+            title: title.trim(),
+            description: description?.trim() || "",
+            projectId,
+            assignedTo: assignedTo || null,
+            status,
+            priority
+        };
+
+        setTasks((prev) => [...prev, newTask]);
+
+        return newTask;
+    }
 
     const value = {
         projects,
@@ -51,7 +73,8 @@ export function Provider({ children }) {
         setUsers,
         addProject,
         updateProject,
-        deleteProject
+        deleteProject,
+        addTask
     };
 
     return (
