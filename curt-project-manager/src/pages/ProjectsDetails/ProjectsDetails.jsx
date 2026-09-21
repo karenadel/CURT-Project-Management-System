@@ -1,3 +1,5 @@
+import { useState } from "react";
+import ProjectForm from "../Projects/ProjectForm";
 import { useParams, Link } from "react-router-dom";
 import { getProjectById, getProjectProgress, getProjectTasks, getProjectUserIds, getUserById } from "../../utils/helpers";
 import { useAppContext } from "../../context/useAppContext.js";
@@ -6,17 +8,47 @@ import NotFound from "../../components/common/NotFound";
 
 function ProjectsDetails() {
     const { projectId } = useParams();
-    const { projects, tasks: allTasks, users } = useAppContext();
+    const {projects, tasks: allTasks, users,updateProject} = useAppContext();
+    const [isEditing, setIsEditing] = useState(false);
     const project = getProjectById(projects, projectId);
     if (!project) {
         return (
             <NotFound message="Project not found." backTo="/projects"/>
         );
     }
+    function handleUpdateProject(values) {
+        updateProject({
+            ...project,
+            name: values.name,
+            description: values.description
+        });
+        setIsEditing(false);
+    }
+    if (isEditing) {
+        return (
+            <div className="project-details-container">
+                <h2>Edit Project</h2>
+                <ProjectForm
+                    initialValues={{
+                        name: project.name,
+                        description: project.description
+                    }}
+                    submitLabel="Save changes"
+                    onSubmit={handleUpdateProject}
+                />
+                <button onClick={() => setIsEditing(false)}>
+                    Cancel
+                </button>
+            </div>
+        );
+    }
+
     const tasks = getProjectTasks(allTasks, project.Id);
     return (
     <div className="project-details-container">
         <h2 className="project-title">{project.name}</h2>
+        {/* TODO:owner only*/}
+        <button onClick={() => setIsEditing(true)}>Edit project</button>
         <h3>{project.description}</h3>
         <h4>Owner: {getUserById(users, project.ownerId)?.name || "Unknown"}</h4>
         <h4>Members: {getProjectUserIds(project).map((element,i) => {
