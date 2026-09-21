@@ -63,6 +63,17 @@ export function Provider({ children }) {
 
         return newTask;
     }
+    function updateTask(updatedTask) {
+        setTasks((prev) =>
+            prev.map((task) =>
+                task.Id === updatedTask.Id ? updatedTask : task
+            )
+        );
+    }
+
+    function deleteTask(taskId) {
+        setTasks((prev) => prev.filter((task) => task.Id !== taskId));
+    }
 
     const value = {
         projects,
@@ -74,7 +85,9 @@ export function Provider({ children }) {
         addProject,
         updateProject,
         deleteProject,
-        addTask
+        addTask,
+        updateTask,
+        deleteTask
     };
 
     return (
