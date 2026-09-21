@@ -1,0 +1,53 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 30px;
+
+    background-color: #fff5f8;
+    border-bottom: 1px solid #f3c6d5;
+    box-shadow: 0 2px 8px rgba(180, 80, 120, 0.08);
+}
+
+/* Logo / App name */
+
+.navbar-brand {
+    color: #8f3155;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* Navigation links */
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-links a {
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    color: #6b4a56;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.navbar-links a:hover {
+    background-color: #fce7f3;
+    color: #9d3d61;
+}
+
+/* Active link */
+
+.navbar-links a.active {
+    background-color: #f4b8cc;
+    color: #7a2344;
+}

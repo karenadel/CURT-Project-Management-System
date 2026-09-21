@@ -6,6 +6,7 @@ import { useAppContext } from "../../context/useAppContext.js";
 import StatusBadge from "../../components/common/StatusBadge";
 import PriorityBadge from "../../components/common/PriorityBadge";
 import NotFound from "../../components/common/NotFound";
+import "./TaskDetails.css";
 
 function TasksDetails() {
     const { taskId } = useParams();
@@ -26,7 +27,7 @@ function TasksDetails() {
     }
     if (isEditing) {
         return (
-            <div>
+            <div className="task-details-edit">
                 <h2>Edit Task</h2>
                 <TaskForm
                     initialValues={{
@@ -40,7 +41,7 @@ function TasksDetails() {
                     submitLabel="Save changes"
                     onSubmit={handleUpdateTask}
                 />
-                <button onClick={() => setIsEditing(false)}>
+                <button className="task-cancel-button" onClick={() => setIsEditing(false)}>
                     Cancel
                 </button>
             </div>
@@ -56,17 +57,50 @@ function TasksDetails() {
     const assignedto = task.assignedTo ? getUserById(users, task.assignedTo) : null;
     const project = getProjectById(projects, task.projectId);
     return (
-        <div>
+        <div className="task-details">
             <h1>{task.title}</h1>
-            {/* TODO: owner/assignee permissions */}
-            <button onClick={() => setIsEditing(true)}>Edit task</button>
-            <button onClick={handleDeleteTask}>Delete task</button>
-            <StatusBadge status={task.status} />
-            <PriorityBadge priority={task.priority} />
-            <p> Assignee: {assignedto?.name || "Unassigned"}</p>
-            <p> Project: {project?.name || "Unknown project"}</p>
 
-            <Link to="/tasks">Back to tasks</Link>
+            <div className="task-details-actions">
+                <button
+                    className="task-edit-button"
+                    onClick={() => setIsEditing(true)}
+                >
+                    Edit task
+                </button>
+
+                <button
+                    className="task-delete-button"
+                    onClick={handleDeleteTask}
+                >
+                    Delete task
+                </button>
+            </div>
+
+            <div className="task-details-badges">
+                <StatusBadge status={task.status} />
+                <PriorityBadge priority={task.priority} />
+            </div>
+
+            <div className="task-details-info">
+                <p>
+                    <strong>Assignee:</strong>{" "}
+                    {assignedto?.name || "Unassigned"}
+                </p>
+
+                <p>
+                    <strong>Project:</strong>{" "}
+                    {project?.name || "Unknown project"}
+                </p>
+
+                <p>
+                    <strong>Description:</strong>{" "}
+                    {task.description || "No description"}
+                </p>
+            </div>
+
+            <Link className="task-back-link" to="/tasks">
+                ← Back to tasks
+            </Link>
         </div>
     );
 }

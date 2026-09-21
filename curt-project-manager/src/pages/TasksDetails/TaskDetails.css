@@ -1,0 +1,126 @@
+
+.task-details {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff5f8;
+    border: 1px solid #f3c6d5;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(180, 80, 120, 0.08);
+}
+
+/* Title */
+
+.task-details h1 {
+    margin: 0 0 20px;
+    color: #8f3155;
+    font-size: 32px;
+}
+
+/* Badges */
+
+.task-details-badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+/* Information */
+
+.task-details-info {
+    padding: 18px;
+    margin-bottom: 25px;
+    background-color: #ffffff;
+    border: 1px solid #f3c6d5;
+    border-radius: 12px;
+}
+
+.task-details-info p {
+    margin: 10px 0;
+    color: #5b3d48;
+    font-size: 15px;
+}
+
+.task-details-info strong {
+    color: #8f3155;
+}
+
+/* Buttons */
+
+.task-details-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.task-details button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.task-edit-button {
+    background-color: #d9789b;
+    color: white;
+}
+
+.task-edit-button:hover {
+    background-color: #c95f85;
+    transform: translateY(-1px);
+}
+
+.task-delete-button {
+    background-color: #f4d1dc;
+    color: #9d3155;
+}
+
+.task-delete-button:hover {
+    background-color: #e8b5c7;
+}
+
+/* Back link */
+
+.task-back-link {
+    display: inline-block;
+    color: #9d3d61;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.task-back-link:hover {
+    color: #7a2344;
+    text-decoration: underline;
+}
+
+/* Edit mode */
+
+.task-details-edit {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.task-details-edit h2 {
+    margin-bottom: 20px;
+    color: #8f3155;
+}
+
+.task-cancel-button {
+    margin-top: 10px;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 9px;
+    background-color: #f4d1dc;
+    color: #8f3155;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.task-cancel-button:hover {
+    background-color: #e8b5c7;
+}

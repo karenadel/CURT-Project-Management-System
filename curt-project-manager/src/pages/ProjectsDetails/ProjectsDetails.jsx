@@ -5,6 +5,7 @@ import { getProjectById, getProjectProgress, getProjectTasks, getProjectUserIds,
 import { useAppContext } from "../../context/useAppContext.js";
 import TaskCard from "../Tasks/TaskCard";
 import NotFound from "../../components/common/NotFound";
+import "./ProjectsDetails.css";
 
 function ProjectsDetails() {
     const { projectId } = useParams();
@@ -29,7 +30,7 @@ function ProjectsDetails() {
     if (isEditing) {
         return (
             <div className="project-details-container">
-                <h2>Edit Project</h2>
+                <h2 className="project-details-edit-title">Edit Project</h2>
                 <ProjectForm
                     initialValues={{
                         name: project.name,
@@ -38,7 +39,10 @@ function ProjectsDetails() {
                     submitLabel="Save changes"
                     onSubmit={handleUpdateProject}
                 />
-                <button onClick={() => setIsEditing(false)}>
+                <button
+                    className="project-cancel-button"
+                    onClick={() => setIsEditing(false)}
+                >
                     Cancel
                 </button>
             </div>
@@ -56,22 +60,41 @@ function ProjectsDetails() {
     <div className="project-details-container">
         <h2 className="project-title">{project.name}</h2>
         {/* TODO:owner only*/}
-        <button onClick={() => setIsEditing(true)}>Edit project</button>
-        <button onClick={handleDeleteProject}> Delete project </button>
-        <h3>{project.description}</h3>
-        <h4>Owner: {getUserById(users, project.ownerId)?.name || "Unknown"}</h4>
-        <h4>Members: {getProjectUserIds(project).map((element,i) => {
-                if(i===0) {return}
-                if(i+1!==getProjectUserIds(project).length) return getUserById(users, element).name + ", ";
-                else return getUserById(users, element).name;
-                })}</h4>
-        <h4>progress: {getProjectProgress(allTasks, project.Id)}%</h4>
-        <div>
-            {tasks.map(task => (
-                <TaskCard key={task.Id} task={task} showProject={false} />
-            ))}
+        <div className="project-details-actions">
+            <button
+                className="project-edit-button"
+                onClick={() => setIsEditing(true)}
+            >
+                Edit project
+            </button>
+            <button
+                className="project-delete-button"
+                onClick={handleDeleteProject}
+            >
+                Delete project
+            </button>
         </div>
-        <Link to="/projects">Back to projects</Link>
+        <h3 className="project-description">{project.description}</h3>
+        <div className="project-details-info">
+            <h4>Owner: {getUserById(users, project.ownerId)?.name || "Unknown"}</h4>
+            <h4>Members: {getProjectUserIds(project).map((element,i) => {
+                    if(i===0) {return}
+                    if(i+1!==getProjectUserIds(project).length) return getUserById(users, element).name + ", ";
+                    else return getUserById(users, element).name;
+                    })}</h4>
+            <h4>Progress: {getProjectProgress(allTasks, project.Id)}%</h4>
+        </div>
+        <div className="project-tasks">
+            <h3>Tasks</h3>
+            {tasks.length === 0 ? (
+                <p className="project-no-tasks">No tasks in this project yet.</p>
+            ) : (
+                tasks.map(task => (
+                    <TaskCard key={task.Id} task={task} showProject={false} />
+                ))
+            )}
+        </div>
+        <Link className="project-back-link" to="/projects">← Back to projects</Link>
 
     </div>
     );
