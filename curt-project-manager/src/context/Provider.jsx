@@ -37,6 +37,11 @@ export function Provider({ children }) {
         );
     }
 
+    function deleteProject(projectId) {
+        setProjects((prev) => prev.filter((project) => project.Id !== projectId));
+        setTasks((prev) => prev.filter((task) => task.projectId !== projectId));
+    }
+
     const value = {
         projects,
         setProjects,
@@ -45,7 +50,8 @@ export function Provider({ children }) {
         users,
         setUsers,
         addProject,
-        updateProject
+        updateProject,
+        deleteProject
     };
 
     return (

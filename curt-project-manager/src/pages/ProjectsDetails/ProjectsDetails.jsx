@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProjectForm from "../Projects/ProjectForm";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link,useNavigate } from "react-router-dom";
 import { getProjectById, getProjectProgress, getProjectTasks, getProjectUserIds, getUserById } from "../../utils/helpers";
 import { useAppContext } from "../../context/useAppContext.js";
 import TaskCard from "../Tasks/TaskCard";
@@ -8,7 +8,9 @@ import NotFound from "../../components/common/NotFound";
 
 function ProjectsDetails() {
     const { projectId } = useParams();
-    const {projects, tasks: allTasks, users,updateProject} = useAppContext();
+    const navigate = useNavigate();
+    const {projects, tasks: allTasks, users,updateProject,
+    deleteProject} = useAppContext();
     const [isEditing, setIsEditing] = useState(false);
     const project = getProjectById(projects, projectId);
     if (!project) {
@@ -42,6 +44,12 @@ function ProjectsDetails() {
             </div>
         );
     }
+    function handleDeleteProject() { 
+        const confirmed = window.confirm( "Are you sure you want to delete this project?" ); 
+        if (!confirmed) { return; } 
+        deleteProject(project.Id); 
+        navigate("/projects"); 
+    }
 
     const tasks = getProjectTasks(allTasks, project.Id);
     return (
@@ -49,6 +57,7 @@ function ProjectsDetails() {
         <h2 className="project-title">{project.name}</h2>
         {/* TODO:owner only*/}
         <button onClick={() => setIsEditing(true)}>Edit project</button>
+        <button onClick={handleDeleteProject}> Delete project </button>
         <h3>{project.description}</h3>
         <h4>Owner: {getUserById(users, project.ownerId)?.name || "Unknown"}</h4>
         <h4>Members: {getProjectUserIds(project).map((element,i) => {
