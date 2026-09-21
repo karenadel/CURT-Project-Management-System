@@ -1,7 +1,7 @@
-import { getTasks } from "../../utils/storage";
+import { useAppContext } from "../../context/useAppContext";
 import TaskCard from "./TaskCard";
 function Tasks() {
-    const tasks = getTasks();
+    const tasks = useAppContext();
     return (
         <div>
             <h1>Tasks</h1>

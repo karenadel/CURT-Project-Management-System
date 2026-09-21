@@ -1,18 +1,20 @@
-import {Link,useParams} from "react-router-dom";
-import {getTaskById,getUserById,getProjectById} from "../../utils/helpers";
+import { Link, useParams } from "react-router-dom";
+import { getTaskById, getUserById, getProjectById } from "../../utils/helpers";
+import { useAppContext } from "../../context/useAppContext.js";
 import StatusBadge from "../../components/common/StatusBadge";
 import PriorityBadge from "../../components/common/PriorityBadge";
 import NotFound from "../../components/common/NotFound";
 
 function TasksDetails() {
-    const {taskId} = useParams();
-    const task = getTaskById(taskId);
+    const { taskId } = useParams();
+    const { tasks, users, projects } = useAppContext();
+    const task = getTaskById(tasks, taskId);
     if (!task) {
         return (<NotFound message="Task not found." backTo="/tasks"/>
         );
     }
-    const assignedto = task.assignedTo ? getUserById(task.assignedTo) : null;
-    const project = getProjectById(task.projectId);
+    const assignedto = task.assignedTo ? getUserById(users, task.assignedTo) : null;
+    const project = getProjectById(projects, task.projectId);
     return (
         <div>
             <h1>{task.title}</h1>

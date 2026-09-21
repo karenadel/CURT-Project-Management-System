@@ -1,18 +1,24 @@
 import {PROJECTS,TASKS,USERS} from "../mockdata/seed.js"
 
-
+export function saveData(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (err) {
+        console.log(err.message);
+    }
+}
 function getData(key, fallback){
     let data;
     try{
         data = JSON.parse(localStorage.getItem(key));
         if(data===null||!Array.isArray(data)){
-        localStorage.setItem(key, JSON.stringify(fallback));
-        data = JSON.parse(localStorage.getItem(key));
+            saveData(key, fallback);
+            data = fallback;
         }
-    }catch (err){
+    } catch (err){
         console.log(err.message)
-        localStorage.setItem(key, JSON.stringify(fallback));
-        data = JSON.parse(localStorage.getItem(key));
+        saveData(key, fallback);
+        data = fallback;
     }
     return data;
 }

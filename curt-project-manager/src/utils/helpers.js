@@ -1,45 +1,30 @@
-import { getUsers, getTasks, getProjects } from "./storage";
 import { STATUSES } from "./constants";
 
-
-
-
-export function getUserById(id) {
-    const users = getUsers();
+export function getUserById(users, id) {
     return users.find((user) => user.Id === id) ?? null;
 }
 
-export function getProjectById(id) {
-    const projects = getProjects();
+export function getProjectById(projects, id) {
     return projects.find((project) => project.Id === id) ?? null;
 }
 
-export function getTaskById(id) {
-    const tasks = getTasks();
+export function getTaskById(tasks, id) {
     return tasks.find((task) => task.Id === id) ?? null;
 }
 
-export function getProjectTasks(projectId){
-    const tasks=getTasks();
-    let projectTasks=[];
-    tasks.forEach((task)=>{
-        if(task.projectId===projectId) projectTasks.push(task); 
-    }) 
-    return projectTasks;
-}
-export function getProjectProgress(projectId){
-    let task=getProjectTasks(projectId);
-    let total = task.length;
-    if (total === 0) return 100;
-    let count=0;
-    task.forEach((t)=>{
-        if(t.status===STATUSES[2]) count++;
-    })
-    return Math.round((count/total)*100);
+export function getProjectTasks(tasks, projectId) {
+    return tasks.filter((task) => task.projectId === projectId);
 }
 
-export function getProjectUserIds(project){
-    let projectmembers=[project.ownerId];
-    project.memberIds.forEach((member)=>{if(projectmembers[0]!==member)projectmembers.push(member)});
-    return projectmembers;
+export function getProjectProgress(tasks, projectId) {
+    const projectTasks = getProjectTasks(tasks, projectId);
+    const total = projectTasks.length;
+    if (total === 0) return 0;
+
+    const done = projectTasks.filter((t) => t.status === STATUSES[2]).length;
+    return Math.round((done / total) * 100);
+}
+
+export function getProjectUserIds(project) {
+    return [...new Set([project.ownerId, ...project.memberIds])];
 }
