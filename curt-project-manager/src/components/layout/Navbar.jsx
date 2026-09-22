@@ -1,7 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { useAppContext } from "../../context/useAppContext.js";
 
 function Navbar() {
+  const { currentUser, logout } = useAppContext();
   return (
     <nav className="navbar">
       <Link className="navbar-brand" to="/projects">
@@ -34,7 +36,13 @@ function Navbar() {
           className={({ isActive }) => (isActive ? "active" : "")}
         >
           Sign Up
+        
         </NavLink>
+        {currentUser && (
+          <button className="logout-button" onClick={logout}>
+              Logout
+          </button>
+      )}
       </div>
     </nav>
   );

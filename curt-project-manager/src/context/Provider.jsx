@@ -113,6 +113,10 @@ export function Provider({ children }) {
         };
     }
 
+    function logout() {
+        setCurrentUser(null);
+    }
+
     const value = {
         projects,
         setProjects,
@@ -129,7 +133,8 @@ export function Provider({ children }) {
         currentUser,
         setCurrentUser,
         login,
-        signup
+        signup,
+        logout
     };
 
     return (
