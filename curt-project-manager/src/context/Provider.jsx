@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Context } from "./Context.jsx";
-import { getProjects, getTasks, getUsers, saveData } from "../utils/storage.js";
+import { getProjects, getTasks, getUsers, saveData,getCurrentUser } from "../utils/storage.js";
+import bcrypt from "bcryptjs";
 
 export function Provider({ children }) {
     const [projects, setProjects] = useState(() => getProjects());
     const [tasks, setTasks] = useState(() => getTasks());
     const [users, setUsers] = useState(() => getUsers());
+    const [currentUser, setCurrentUser] = useState(() => getCurrentUser());
 
     useEffect(() => {
         saveData("PROJECTS", projects);
@@ -16,13 +18,16 @@ export function Provider({ children }) {
     useEffect(() => {
         saveData("USERS", users);
     }, [users]);
+    useEffect(() => {
+        saveData("CURRENT_USER", currentUser);
+    }, [currentUser]);
 
     function addProject({ name, description }) {
         const newProject = {
             Id: crypto.randomUUID(),
             name: name.trim(),
             description: description?.trim() || "",
-            ownerId: "u1", // TODO: replace with currentUser.Id once auth exists
+            ownerId: currentUser.Id, 
             memberIds: []
         };
         setProjects((prev) => [...prev, newProject]);
@@ -41,14 +46,7 @@ export function Provider({ children }) {
         setProjects((prev) => prev.filter((project) => project.Id !== projectId));
         setTasks((prev) => prev.filter((task) => task.projectId !== projectId));
     }
-    function addTask({
-        title,
-        description,
-        projectId,
-        assignedTo,
-        status,
-        priority
-    }) {
+    function addTask({title,description,projectId,assignedTo,status,priority}) {
         const newTask = {
             Id: crypto.randomUUID(),
             title: title.trim(),
@@ -75,6 +73,46 @@ export function Provider({ children }) {
         setTasks((prev) => prev.filter((task) => task.Id !== taskId));
     }
 
+    async function login(email, password) {
+        const user = users.find((user) => user.email.toLowerCase() === email.toLowerCase());
+        if (!user) {
+            return false;
+        }
+        const passwordMatches = await bcrypt.compare(
+            password,
+            user.password
+        );
+        if (!passwordMatches) {
+            return false;
+        }
+        setCurrentUser(user);
+        return true;
+    }
+
+    async function signup({ name, email, password }) {
+        const existing = users.find(
+            (user) => user.email.toLowerCase() === email.toLowerCase()
+        );
+        if (existing) {
+            return {
+                success: false,
+                error: "Email is already taken"
+            };
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = {
+            Id: crypto.randomUUID(),
+            name,
+            email,
+            password: hashedPassword
+        };
+        setUsers((prev) => [...prev, newUser]);
+        setCurrentUser(newUser);
+        return {
+            success: true
+        };
+    }
+
     const value = {
         projects,
         setProjects,
@@ -87,7 +125,11 @@ export function Provider({ children }) {
         deleteProject,
         addTask,
         updateTask,
-        deleteTask
+        deleteTask,
+        currentUser,
+        setCurrentUser,
+        login,
+        signup
     };
 
     return (

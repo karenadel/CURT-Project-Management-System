@@ -7,7 +7,7 @@ export function saveData(key, value) {
         console.log(err.message);
     }
 }
-function getData(key, fallback){
+export function getData(key, fallback){
     let data;
     try{
         data = JSON.parse(localStorage.getItem(key));
@@ -31,4 +31,12 @@ export function getUsers(){
 }
 export function getTasks(){
     return getData("TASKS",TASKS)
+}
+export function getCurrentUser() {
+    try {
+        return JSON.parse(localStorage.getItem("CURRENT_USER"));
+    } catch (err) {
+        console.log(err.message);
+        return null;
+    }
 }
