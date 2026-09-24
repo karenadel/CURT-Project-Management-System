@@ -10,8 +10,8 @@ export const USERS =[
         role:"admin"
     },{
         Id:"u2",
-        name:"Laila",
-        email:"laila@example.com",
+        name:"coky",
+        email:"coky@example.com",
         password:"$2b$10$N68EcWuBpXXDOdMTJsbNJ.S/gP9Z4.NTwzDWRAzayDAhDyEH05uDO", //456456
         role:"member"
     },{
