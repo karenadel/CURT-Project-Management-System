@@ -33,6 +33,8 @@ function Navbar() {
           Sign Up
         </NavLink></>)}
 
+        
+
         {currentUser && (
           <button className="logout-button" onClick={logout}>
               Logout

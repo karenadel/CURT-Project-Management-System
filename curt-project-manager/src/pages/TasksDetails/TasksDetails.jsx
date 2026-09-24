@@ -11,7 +11,7 @@ import "./TaskDetails.css";
 function TasksDetails() {
     const { taskId } = useParams();
     const navigate = useNavigate();
-    const { tasks, users, projects, updateTask, deleteTask } = useAppContext();
+    const { tasks, users, projects, updateTask, deleteTask,can,currentUser } = useAppContext();
     const [isEditing, setIsEditing] = useState(false);
     const task = getTaskById(tasks, taskId);
     if (!task) {
@@ -19,10 +19,7 @@ function TasksDetails() {
         );
     }
     function handleUpdateTask(values) {
-        updateTask({
-            ...task,
-            ...values
-        });
+        updateTask({...task,...values});
         setIsEditing(false);
     }
     if (isEditing) {
@@ -61,19 +58,17 @@ function TasksDetails() {
             <h1>{task.title}</h1>
 
             <div className="task-details-actions">
-                <button
+                {can(currentUser, "edit_task") && (<button
                     className="task-edit-button"
-                    onClick={() => setIsEditing(true)}
-                >
+                    onClick={() => setIsEditing(true)}>
                     Edit task
-                </button>
+                </button>)}
 
-                <button
+                {can(currentUser, "delete_task") && (<button
                     className="task-delete-button"
-                    onClick={handleDeleteTask}
-                >
+                    onClick={handleDeleteTask}>
                     Delete task
-                </button>
+                </button>)}
             </div>
 
             <div className="task-details-badges">
@@ -83,7 +78,7 @@ function TasksDetails() {
 
             <div className="task-details-info">
                 <p>
-                    <strong>Assignee:</strong>{" "}
+                    <strong>Assigned to:</strong>{" "}
                     {assignedto?.name || "Unassigned"}
                 </p>
 

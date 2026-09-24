@@ -6,27 +6,32 @@ export const USERS =[
         Id:"u1",
         name:"Karen",
         email:"karen@example.com",
-        password:"$2b$10$wki1LDAZpxyr50bYZZY4nuNq9yPhXoAZc85zozskq1n99gPjLMVGW" //123123
+        password:"$2b$10$wki1LDAZpxyr50bYZZY4nuNq9yPhXoAZc85zozskq1n99gPjLMVGW", //123123
+        role:"admin"
     },{
         Id:"u2",
         name:"Laila",
         email:"laila@example.com",
-        password:"$2b$10$N68EcWuBpXXDOdMTJsbNJ.S/gP9Z4.NTwzDWRAzayDAhDyEH05uDO" //456456
+        password:"$2b$10$N68EcWuBpXXDOdMTJsbNJ.S/gP9Z4.NTwzDWRAzayDAhDyEH05uDO", //456456
+        role:"member"
     },{
         Id:"u3",
         name:"Clara",
         email:"clara@example.com",
-        password:"$2b$10$iljfop87Vd7QLBWPH.tGPerp.Y2g.Y09tvx7ukZDS4f4E9og5coSq" //789789
+        password:"$2b$10$iljfop87Vd7QLBWPH.tGPerp.Y2g.Y09tvx7ukZDS4f4E9og5coSq", //789789
+        role:"member"
     },{
         Id:"u4",
         name:"Fady",
         email:"fady@example.com",
-        password:"$2b$10$Eoc.4x94tqv1Xv8cWpQ7/.JU1etj0U1c.1YtkDTpRE5GL8zMGMxF6" //123456
+        password:"$2b$10$Eoc.4x94tqv1Xv8cWpQ7/.JU1etj0U1c.1YtkDTpRE5GL8zMGMxF6", //123456
+        role:"member"
     },{
         Id:"u5",
         name:"Kero",
         email:"kero@example.com",
-        password:"$2b$10$jrE7A1DV9MytoryNXE3RFO1JndsuqmdUD8SKkbuudauJCKNCBWiPe" //456789
+        password:"$2b$10$jrE7A1DV9MytoryNXE3RFO1JndsuqmdUD8SKkbuudauJCKNCBWiPe", //456789
+        role:"admin"
     }
 ]
 

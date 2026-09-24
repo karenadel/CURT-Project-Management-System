@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Context } from "./Context.jsx";
 import { getProjects, getTasks, getUsers, saveData,getCurrentUser } from "../utils/storage.js";
 import bcrypt from "bcryptjs";
+import { can } from "../auth/Permissions.js";
 
 export function Provider({ children }) {
     const [projects, setProjects] = useState(() => getProjects());
@@ -23,6 +24,7 @@ export function Provider({ children }) {
     }, [currentUser]);
 
     function addProject({ name, description }) {
+        if (!can(currentUser, "create_project")) return null;
         const newProject = {
             Id: crypto.randomUUID(),
             name: name.trim(),
@@ -35,6 +37,7 @@ export function Provider({ children }) {
     }
 
     function updateProject(updatedProject) {
+        if (!can(currentUser, "edit_project")) return;
         setProjects((prev) =>
             prev.map((project) =>
                 project.Id === updatedProject.Id ? updatedProject : project
@@ -43,10 +46,12 @@ export function Provider({ children }) {
     }
 
     function deleteProject(projectId) {
+        if (!can(currentUser, "delete_project")) return;
         setProjects((prev) => prev.filter((project) => project.Id !== projectId));
         setTasks((prev) => prev.filter((task) => task.projectId !== projectId));
     }
     function addTask({title,description,projectId,assignedTo,status,priority}) {
+        if (!can(currentUser, "create_task")) return null;
         const newTask = {
             Id: crypto.randomUUID(),
             title: title.trim(),
@@ -62,6 +67,7 @@ export function Provider({ children }) {
         return newTask;
     }
     function updateTask(updatedTask) {
+        if (!can(currentUser, "edit_task")) return;
         setTasks((prev) =>
             prev.map((task) =>
                 task.Id === updatedTask.Id ? updatedTask : task
@@ -70,6 +76,7 @@ export function Provider({ children }) {
     }
 
     function deleteTask(taskId) {
+        if (!can(currentUser, "delete_task")) return;
         setTasks((prev) => prev.filter((task) => task.Id !== taskId));
     }
 
@@ -89,7 +96,7 @@ export function Provider({ children }) {
         return true;
     }
 
-    async function signup({ name, email, password }) {
+    async function signup({name, email, password}) {
         const existing = users.find(
             (user) => user.email.toLowerCase() === email.toLowerCase()
         );
@@ -104,7 +111,8 @@ export function Provider({ children }) {
             Id: crypto.randomUUID(),
             name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            role: "member"
         };
         setUsers((prev) => [...prev, newUser]);
         setCurrentUser(newUser);
@@ -134,7 +142,8 @@ export function Provider({ children }) {
         setCurrentUser,
         login,
         signup,
-        logout
+        logout,
+        can
     };
 
     return (

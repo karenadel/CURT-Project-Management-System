@@ -11,7 +11,7 @@ function ProjectsDetails() {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const {projects, tasks: allTasks, users,updateProject,
-    deleteProject} = useAppContext();
+    deleteProject,can,currentUser} = useAppContext();
     const [isEditing, setIsEditing] = useState(false);
     const project = getProjectById(projects, projectId);
     if (!project) {
@@ -59,8 +59,7 @@ function ProjectsDetails() {
     return (
     <div className="project-details-container">
         <h2 className="project-title">{project.name}</h2>
-        {/* TODO:owner only*/}
-        <div className="project-details-actions">
+        {can(currentUser, "edit_project") && (<div className="project-details-actions">
             <button
                 className="project-edit-button"
                 onClick={() => setIsEditing(true)}
@@ -73,7 +72,7 @@ function ProjectsDetails() {
             >
                 Delete project
             </button>
-        </div>
+        </div>)}
         <h3 className="project-description">{project.description}</h3>
         <div className="project-details-info">
             <h4>Owner: {getUserById(users, project.ownerId)?.name || "Unknown"}</h4>
