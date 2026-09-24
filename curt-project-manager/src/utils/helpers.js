@@ -28,3 +28,28 @@ export function getProjectProgress(tasks, projectId) {
 export function getProjectUserIds(project) {
     return [...new Set([project.ownerId, ...project.memberIds])];
 }
+
+export function getProjectsForRole(projects, user) {
+    if (user.role === "admin") {
+        return projects;
+    }
+    return projects.filter(
+        (project) =>
+            project.ownerId === user.Id ||
+            project.memberIds.includes(user.Id)
+    );
+}
+export function getTasksForRole(tasks, user) {
+    if (user.role === "admin") {
+        return tasks;
+    }
+    return tasks.filter(
+        (task) => task.assignedTo === user.Id
+    );
+}
+
+export function getMyProjects(projects, userId) {
+    return projects.filter(
+        (project) => project.ownerId === userId
+    );
+}

@@ -2,8 +2,10 @@ import { useAppContext } from "../../context/useAppContext";
 import TaskCard from "./TaskCard";
 import TaskForm from "./TaskForm";
 import "./Tasks.css";
+import { getTasksForRole } from "../../utils/helpers";
 function Tasks() {
-    const {tasks,addTask} = useAppContext();
+    const {tasks,addTask,currentUser} = useAppContext();
+    const availableTasks = getTasksForRole(tasks, currentUser);
     function handleCreateTask(values) {
         addTask(values);
     }
@@ -16,11 +18,11 @@ function Tasks() {
             <TaskForm onSubmit={handleCreateTask} />
         </div>
 
-        {tasks.length === 0 ? (
+        {availableTasks.length === 0 ? (
             <p className="tasks-empty">No tasks yet.</p>
         ) : (
             <div className="tasks-list">
-                {tasks.map((task) => (
+                {availableTasks.map((task) => (
                     <TaskCard
                         key={task.Id}
                         task={task}

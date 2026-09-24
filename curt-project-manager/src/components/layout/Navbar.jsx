@@ -14,18 +14,23 @@ function Navbar() {
         <NavLink
           to="/projects"
           className={({ isActive }) => (isActive ? "active" : "")}>
-          Projects
+          My Projects
         </NavLink>
 
         <NavLink
           to="/tasks"
           className={({ isActive }) => (isActive ? "active" : "")}>
-          Tasks
+          My Tasks
         </NavLink>
         {!currentUser && (<><NavLink to="/login"
           className={({ isActive }) => (isActive ? "active" : "")}>
           Login
         </NavLink>
+
+        {(currentUser.role === "admin") && (
+        <>
+          
+        </>)}
 
         <NavLink
           to="/signup"
