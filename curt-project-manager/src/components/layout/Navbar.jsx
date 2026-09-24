@@ -13,29 +13,24 @@ function Navbar() {
       <div className="navbar-links">
         <NavLink
           to="/projects"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+          className={({ isActive }) => (isActive ? "active" : "")}>
           Projects
         </NavLink>
 
         <NavLink
           to="/tasks"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+          className={({ isActive }) => (isActive ? "active" : "")}>
           Tasks
         </NavLink>
         {!currentUser && (<><NavLink to="/login"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+          className={({ isActive }) => (isActive ? "active" : "")}>
           Login
         </NavLink>
 
         <NavLink
           to="/signup"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+          className={({ isActive }) => (isActive ? "active" : "")}>
           Sign Up
-        
         </NavLink></>)}
 
         {currentUser && (
