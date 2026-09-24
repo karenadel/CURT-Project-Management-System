@@ -95,6 +95,29 @@ export function Provider({ children }) {
         setCurrentUser(user);
         return true;
     }
+    function addProjectMember(projectId, userId) {
+        if (!can(currentUser, "edit_project")) return;
+        setProjects((prev) =>
+            prev.map((project) => {
+                if (project.Id !== projectId) return project;
+                if (project.memberIds.includes(userId))return project;
+
+                return {...project,memberIds: [...project.memberIds, userId]
+                };
+            })
+        );
+    }
+
+    function removeProjectMember(projectId, userId) {
+        if (!can(currentUser, "edit_project")) return;
+        setProjects((prev) =>
+            prev.map((project) => {
+                if (project.Id !== projectId) return project;
+                return {...project,memberIds: project.memberIds.filter((id) => id !== userId)
+                };
+            })
+        );
+    }
 
     async function signup({name, email, password}) {
         const existing = users.find(
@@ -143,7 +166,9 @@ export function Provider({ children }) {
         login,
         signup,
         logout,
-        can
+        can,
+        addProjectMember,
+        removeProjectMember
     };
 
     return (

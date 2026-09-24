@@ -147,3 +147,81 @@
 .project-cancel-button:hover {
     background-color: #e8b5c7;
 }
+/* Add Members */
+
+.project-members {
+    margin-bottom: 30px;
+}
+
+.project-members > h2 {
+    margin-bottom: 15px;
+    color: #8f3155;
+    font-size: 20px;
+}
+
+.project-members ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.project-members li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background-color: #ffffff;
+    border: 1px solid #f3c6d5;
+    border-radius: 10px;
+    color: #5b3d48;
+}
+
+.project-members li button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 7px;
+    background-color: #f4d1dc;
+    color: #9d3155;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.project-members li button:hover {
+    background-color: #e8b5c7;
+}
+
+/* Add member section */
+
+.project-members > div {
+    margin-top: 20px;
+    padding: 18px;
+    background-color: #ffffff;
+    border: 1px solid #f3c6d5;
+    border-radius: 12px;
+}
+
+.project-members > div h3 {
+    margin: 0 0 10px;
+    color: #8f3155;
+    font-size: 16px;
+}
+
+.project-members select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e3aabd;
+    border-radius: 8px;
+    background-color: #fff5f8;
+    color: #5b3d48;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+.project-members select:focus {
+    border-color: #d9789b;
+    box-shadow: 0 0 0 2px rgba(217, 120, 155, 0.15);
+}

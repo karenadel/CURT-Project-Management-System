@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProjectForm from "../Projects/ProjectForm";
 import { useParams, Link,useNavigate } from "react-router-dom";
-import { getProjectById, getProjectProgress, getProjectTasks, getProjectUserIds, getUserById ,getProjectOwner} from "../../utils/helpers";
+import { getProjectById, getProjectProgress, getProjectTasks, getUserById ,getProjectOwner} from "../../utils/helpers";
 import { useAppContext } from "../../context/useAppContext.js";
 import TaskCard from "../Tasks/TaskCard";
 import NotFound from "../../components/common/NotFound";
@@ -11,7 +11,7 @@ function ProjectsDetails() {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const {projects, tasks: allTasks, users,updateProject,
-    deleteProject,can,currentUser} = useAppContext();
+    deleteProject,can,currentUser,removeProjectMember,addProjectMember} = useAppContext();
     const [isEditing, setIsEditing] = useState(false);
     const project = getProjectById(projects, projectId);
     if (!project) {
@@ -19,6 +19,8 @@ function ProjectsDetails() {
             <NotFound message="Project not found." backTo="/projects"/>
         );
     }
+    const members = project.memberIds.map((id) => getUserById(users, id)).filter(Boolean);
+    const availableUsers = users.filter((user) => user.Id !== project.ownerId &&!project.memberIds.includes(user.Id));
     function handleUpdateProject(values) {
         updateProject({
             ...project,
@@ -74,13 +76,43 @@ function ProjectsDetails() {
         <h3 className="project-description">{project.description}</h3>
         <div className="project-details-info">
             <h4>Owner: {getUserById(users, project.ownerId)?.name || "Unknown"}</h4>
-            <h4>Members: {getProjectUserIds(project).map((element,i) => {
-                    if(i===0) {return}
-                    if(i+1!==getProjectUserIds(project).length) return getUserById(users, element).name + ", ";
-                    else return getUserById(users, element).name;
-                    })}</h4>
             <h4>Progress: {getProjectProgress(allTasks, project.Id)}%</h4>
         </div>
+<div className="project-members">
+    <h2>Members</h2>
+    {members.length === 0 ? (<p>No members yet.</p>) : (
+        <ul>
+            {members.map((member) => (
+                <li key={member.Id}>
+                    <span>{member.name}</span>
+                    {can(currentUser, "edit_project") && (
+                        <button onClick={() => removeProjectMember(project.Id, member.Id)}>
+                            Remove
+                        </button>
+                    )}
+                </li>
+            ))}
+        </ul>
+    )}
+    {can(currentUser, "edit_project") && availableUsers.length > 0 && (
+        <div>
+            <h3>Add member</h3>
+            <select
+                defaultValue=""
+                onChange={(e) => {
+                    if (!e.target.value) return;
+                    addProjectMember(project.Id, e.target.value);
+                    e.target.value = "";}}>
+                <option value="">Select a user</option>
+                {availableUsers.map((user) => (
+                    <option key={user.Id} value={user.Id}>
+                        {user.name}
+                    </option>
+                ))}
+            </select>
+        </div>
+    )}
+</div>
         <div className="project-tasks">
             <h3>Tasks</h3>
             {tasks.length === 0 ? (
