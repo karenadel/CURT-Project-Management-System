@@ -47,7 +47,9 @@ export function Provider({ children }) {
     }
 
     function deleteProject(projectId) {
-        if (!can(currentUser, "delete_project")) return;
+        const project = projects.find((project) => project.Id === projectId);
+        if (!project) return;
+        if (!can(currentUser, "delete_project") && currentUser.Id!==project.ownerId) return;
         setProjects((prev) => prev.filter((project) => project.Id !== projectId));
         setTasks((prev) => prev.filter((task) => task.projectId !== projectId));
     }
@@ -77,7 +79,14 @@ export function Provider({ children }) {
     }
 
     function deleteTask(taskId) {
-        if (!can(currentUser, "delete_task")) return;
+        const task = tasks.find(
+        (task) => task.Id === taskId);
+        if (!task) return;
+        const projectid=task.projectId;
+        const project = projects.find((project) => project.Id === projectid);
+        if (!project) return;
+        
+        if (!can(currentUser, "delete_task") && (project.ownerId!==currentUser.Id)) return;
         setTasks((prev) => prev.filter((task) => task.Id !== taskId));
     }
 
