@@ -11,7 +11,7 @@ function ProjectsDetails() {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const {projects, tasks: allTasks, users,updateProject,
-    deleteProject,can,currentUser,removeProjectMember,addProjectMember} = useAppContext();
+    deleteProject,can,currentUser,removeProjectMember,addProjectMember,showToast} = useAppContext();
     const [isEditing, setIsEditing] = useState(false);
     const project = getProjectById(projects, projectId);
     if (!project) {
@@ -28,6 +28,7 @@ function ProjectsDetails() {
             description: values.description
         });
         setIsEditing(false);
+        showToast("Project updated successfully!");
     }
     if (isEditing) {
         return (
@@ -39,12 +40,10 @@ function ProjectsDetails() {
                         description: project.description
                     }}
                     submitLabel="Save changes"
-                    onSubmit={handleUpdateProject}
-                />
+                    onSubmit={handleUpdateProject}/>
                 <button
                     className="project-cancel-button"
-                    onClick={() => setIsEditing(false)}
-                >
+                    onClick={() => setIsEditing(false)}>
                     Cancel
                 </button>
             </div>
@@ -55,6 +54,7 @@ function ProjectsDetails() {
         if (!confirmed) { return; } 
         deleteProject(project.Id); 
         navigate("/projects"); 
+        showToast("Project deleted successfully!");
     }
 
     const tasks = getProjectTasks(allTasks, project.Id);
@@ -86,7 +86,8 @@ function ProjectsDetails() {
                 <li key={member.Id}>
                     <span>{member.name}</span>
                     {can(currentUser, "edit_project") && (
-                        <button onClick={() => removeProjectMember(project.Id, member.Id)}>
+                        <button onClick={() => {removeProjectMember(project.Id, member.Id); 
+                        showToast("Member removed successfully!");}}>
                             Remove
                         </button>
                     )}
@@ -102,7 +103,8 @@ function ProjectsDetails() {
                 onChange={(e) => {
                     if (!e.target.value) return;
                     addProjectMember(project.Id, e.target.value);
-                    e.target.value = "";}}>
+                    e.target.value = "";
+                    showToast("Member added successfully!");}}>
                 <option value="">Select a user</option>
                 {availableUsers.map((user) => (
                     <option key={user.Id} value={user.Id}>

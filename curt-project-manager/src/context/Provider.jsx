@@ -9,6 +9,7 @@ export function Provider({ children }) {
     const [tasks, setTasks] = useState(() => getTasks());
     const [users, setUsers] = useState(() => getUsers());
     const [currentUser, setCurrentUser] = useState(() => getCurrentUser());
+    const [toast, setToast] = useState(null);
 
     useEffect(() => {
         saveData("PROJECTS", projects);
@@ -119,6 +120,14 @@ export function Provider({ children }) {
         );
     }
 
+    function showToast(message, type = "success") {
+        setToast({ message, type });
+
+        setTimeout(() => {
+            setToast(null);
+        }, 3000);
+    }
+
     async function signup({name, email, password}) {
         const existing = users.find(
             (user) => user.email.toLowerCase() === email.toLowerCase()
@@ -168,7 +177,9 @@ export function Provider({ children }) {
         logout,
         can,
         addProjectMember,
-        removeProjectMember
+        removeProjectMember,
+        showToast,
+        toast
     };
 
     return (

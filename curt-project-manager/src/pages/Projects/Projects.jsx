@@ -6,11 +6,12 @@ import ProjectForm from "./ProjectForm";
 import "./Projects.css";
 import { getMyProjects } from "../../utils/helpers.js";
 function Projects() {
-    const {projects,addProject,currentUser} = useAppContext();
+    const {projects,addProject,currentUser,showToast} = useAppContext();
     const [activeTab, setActiveTab] = useState("my");
     const [search, setSearch] = useState("");
     function handleCreateProject(values) {
         addProject(values);
+        showToast("Project created successfully!");
     }
     const myProjects = getMyProjects(projects, currentUser.Id);
     const availableProjects =
@@ -42,12 +43,10 @@ function Projects() {
                     onChange={(e) => setSearch(e.target.value)}/>
             </div>
             <div className="projects-list">
-            {filteredProjects.length === 0 ? (<p className="projects-empty">No projects yet.</p>) : (
-                filteredProjects.map(project => (
+            {filteredProjects.length === 0 ? (<p className="projects-empty">No projects yet.</p>) : (filteredProjects.map(project => (
                     <ProjectCard
                         key={project.Id}
-                        project={project}
-                    />
+                        project={project}/>
                 ))
             )}
         </div>
