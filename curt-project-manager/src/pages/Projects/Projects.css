@@ -54,3 +54,31 @@
     color: white;
     border-color: #8f3155;
 }
+/* Project Search */
+
+.project-search {
+    margin-bottom: 20px;
+}
+
+.project-search input {
+    width: 100%;
+    max-width: 450px;
+    padding: 11px 14px;
+    border: 1px solid #e8b5c7;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #5b3d48;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+    box-sizing: border-box;
+}
+
+.project-search input::placeholder {
+    color: #b88999;
+}
+
+.project-search input:focus {
+    border-color: #d9789b;
+    box-shadow: 0 0 0 3px rgba(217, 120, 155, 0.12);
+}

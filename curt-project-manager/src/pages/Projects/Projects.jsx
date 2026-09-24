@@ -8,12 +8,14 @@ import { getMyProjects } from "../../utils/helpers.js";
 function Projects() {
     const {projects,addProject,currentUser} = useAppContext();
     const [activeTab, setActiveTab] = useState("my");
+    const [search, setSearch] = useState("");
     function handleCreateProject(values) {
         addProject(values);
     }
     const myProjects = getMyProjects(projects, currentUser.Id);
     const availableProjects =
         currentUser.role === "admin" && activeTab === "all" ? projects : myProjects;
+        const filteredProjects = availableProjects.filter((project) =>project.name.toLowerCase().includes(search.toLowerCase()));
     return (
         <div className="projects-page">
             <h1>Projects</h1>
@@ -31,10 +33,17 @@ function Projects() {
                         All Projects
                     </button>
                 </div>
-            )}            
+            )}
+            <div className="project-search">
+                <input
+                    type="text"
+                    placeholder="Search projects..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}/>
+            </div>
             <div className="projects-list">
-            {availableProjects.length === 0 ? (<p className="projects-empty">No projects yet.</p>) : (
-                availableProjects.map(project => (
+            {filteredProjects.length === 0 ? (<p className="projects-empty">No projects yet.</p>) : (
+                filteredProjects.map(project => (
                     <ProjectCard
                         key={project.Id}
                         project={project}

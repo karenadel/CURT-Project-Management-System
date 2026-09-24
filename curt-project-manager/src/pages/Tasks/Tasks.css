@@ -91,3 +91,30 @@
     border-color: #8f3155;
     box-shadow: 0 0 0 2px #fbe3eb;
 }
+
+.task-search {
+    margin-bottom: 20px;
+}
+
+.task-search input {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 16px;
+    border: 1px solid #e8b5c7;
+    border-radius: 10px;
+    background-color: #fff5f8;
+    color: #5b3d48;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: 0.2s ease;
+}
+
+.task-search input::placeholder {
+    color: #b88999;
+}
+
+.task-search input:focus {
+    border-color: #d9789b;
+    box-shadow: 0 0 0 3px rgba(217, 120, 155, 0.12);
+}

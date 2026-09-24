@@ -13,8 +13,10 @@ function Tasks() {
     const [statusFilter, setStatusFilter] = useState("all");
     const [priorityFilter, setPriorityFilter] = useState("all");
     const [assigneeFilter, setAssigneeFilter] = useState("all");
+    const [search, setSearch] = useState("");
     const availableTasks =
         currentUser.role === "admin" && activeTab === "all"?tasks: myTasks;
+    
     const filteredTasks = availableTasks.filter((task) => {
         const matchesStatus =
             statusFilter === "all" || task.status === statusFilter;
@@ -22,7 +24,8 @@ function Tasks() {
             priorityFilter === "all" || task.priority === priorityFilter;
         const matchesAssignee =
             assigneeFilter === "all" || task.assignedTo === assigneeFilter;
-        return matchesStatus && matchesPriority && matchesAssignee;
+        const matchesSearch = task.title.toLowerCase().includes(search.toLowerCase());
+        return matchesStatus && matchesPriority && matchesAssignee && matchesSearch;
     });        
     function handleCreateTask(values) {
         addTask(values);
@@ -86,6 +89,13 @@ function Tasks() {
                     </option>
                 ))}
             </select>
+        </div>
+        <div className="task-search">
+            <input
+                type="text"
+                placeholder="Search tasks..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}/>
         </div>
 
         {filteredTasks.length === 0 ? (
