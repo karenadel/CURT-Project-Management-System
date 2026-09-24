@@ -3,7 +3,7 @@
 A frontend-only team project management system built for the **Cairo University Racing Team (CURT) Software Development Team** frontend task, season 26-27. Users can create projects, break them down into tasks, assign tasks to project members, and track status, priority, and progress.
 
 > **Live demo:** [https://curt-project-management-system.vercel.app](https://curt-project-management-system.vercel.app)
-> **Demo video:** _TODO: add public Google Drive link_
+> **Demo video:** [https://drive.google.com/drive/folders/1mjV7Bde3bxl7HLdMk9kf-AfLtEnkwzuN?usp=drive_link](Demo)
 
 ---
 
@@ -261,7 +261,7 @@ npm run preview   # preview the production build locally
 
 On first load (when `localStorage` is empty), the app is seeded with sample users, projects, and tasks from `src/mockdata/seed.js`, so it can be explored immediately.
 
-**Demo accounts** _(TODO: fill in from `seed.js`)_
+**Demo accounts** 
 
 | Role | Email | Password |
 | --- | --- | --- |
