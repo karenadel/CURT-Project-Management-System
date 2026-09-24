@@ -127,6 +127,20 @@ export function Provider({ children }) {
                 };
             })
         );
+        setTasks((prev) =>
+        prev.map((task) => {
+            if (
+                task.projectId === projectId &&
+                task.assignedTo === userId
+            ) {
+                return {
+                    ...task,
+                    assignedTo: null
+                };
+            }
+            return task;
+        })
+    );
     }
 
     function showToast(message, type = "success") {
