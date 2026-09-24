@@ -4,8 +4,8 @@ import { STATUSES } from "../utils/constants"
 export const USERS =[
     {
         Id:"u1",
-        name:"Karen",
-        email:"karen@example.com",
+        name:"admin",
+        email:"admin@example.com",
         password:"$2b$10$wki1LDAZpxyr50bYZZY4nuNq9yPhXoAZc85zozskq1n99gPjLMVGW", //123123
         role:"admin"
     },{
@@ -22,8 +22,8 @@ export const USERS =[
         role:"member"
     },{
         Id:"u4",
-        name:"Fady",
-        email:"fady@example.com",
+        name:"member",
+        email:"member@example.com",
         password:"$2b$10$Eoc.4x94tqv1Xv8cWpQ7/.JU1etj0U1c.1YtkDTpRE5GL8zMGMxF6", //123456
         role:"member"
     },{
