@@ -1,7 +1,7 @@
 import "./TaskForm.css"
 import { useState } from "react";
 import { useAppContext } from "../../context/useAppContext.js";
-import { getProjectUserIds } from "../../utils/helpers";
+import { getProjectUserIds, getProjectsForRole} from "../../utils/helpers";
 import { STATUSES, PRIORITIES } from "../../utils/constants";
 
 const defaultValues = {
@@ -25,10 +25,10 @@ function validate(values) {
 }
 
 function TaskForm({ initialValues = defaultValues, submitLabel = "Create task", onSubmit }) {
-    const { projects, users } = useAppContext();
+    const { projects, users,currentUser } = useAppContext();
     const [values, setValues] = useState(initialValues);
     const [touched, setTouched] = useState({});
-
+    const availableProjects=getProjectsForRole(projects,currentUser);
     const errors = validate(values);
     const isValid = Object.keys(errors).length === 0;
 
@@ -41,7 +41,6 @@ function TaskForm({ initialValues = defaultValues, submitLabel = "Create task", 
     function handleChange(field, value) {
         setValues((prev) => {
             const next = { ...prev, [field]: value };
-            // if the project changes, the old assignee may not belong to it
             if (field === "projectId") {
                 next.assignedTo = "";
             }
@@ -94,7 +93,7 @@ function TaskForm({ initialValues = defaultValues, submitLabel = "Create task", 
                 onBlur={() => setTouched((t) => ({ ...t, projectId: true }))}
             >
                 <option value="">Select a project</option>
-                {projects.map((p) => (
+                {availableProjects.map((p) => (
                     <option key={p.Id} value={p.Id}>{p.name}</option>
                 ))}
             </select>

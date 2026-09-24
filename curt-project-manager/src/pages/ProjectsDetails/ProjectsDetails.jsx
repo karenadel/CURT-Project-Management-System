@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProjectForm from "../Projects/ProjectForm";
 import { useParams, Link,useNavigate } from "react-router-dom";
-import { getProjectById, getProjectProgress, getProjectTasks, getProjectUserIds, getUserById } from "../../utils/helpers";
+import { getProjectById, getProjectProgress, getProjectTasks, getProjectUserIds, getUserById ,getProjectOwner} from "../../utils/helpers";
 import { useAppContext } from "../../context/useAppContext.js";
 import TaskCard from "../Tasks/TaskCard";
 import NotFound from "../../components/common/NotFound";
@@ -59,17 +59,15 @@ function ProjectsDetails() {
     return (
     <div className="project-details-container">
         <h2 className="project-title">{project.name}</h2>
-        {can(currentUser, "edit_project") && (<div className="project-details-actions">
+        {(can(currentUser, "edit_project") || (getProjectOwner(project)===currentUser.Id)) && (<div className="project-details-actions">
             <button
                 className="project-edit-button"
-                onClick={() => setIsEditing(true)}
-            >
+                onClick={() => setIsEditing(true)}>
                 Edit project
             </button>
             <button
                 className="project-delete-button"
-                onClick={handleDeleteProject}
-            >
+                onClick={handleDeleteProject}>
                 Delete project
             </button>
         </div>)}

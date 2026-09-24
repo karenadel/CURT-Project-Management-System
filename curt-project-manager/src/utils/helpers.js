@@ -28,6 +28,15 @@ export function getProjectProgress(tasks, projectId) {
 export function getProjectUserIds(project) {
     return [...new Set([project.ownerId, ...project.memberIds])];
 }
+export function getProjectOwner(project){
+    return project.ownerId;
+}
+function getTaskProject(task){
+    return task.projectId;
+}
+export function getTaskOwner(projects,task){
+    return getProjectOwner(getProjectById(projects,getTaskProject(task)));
+}
 
 export function getProjectsForRole(projects, user) {
     if (user.role === "admin") {
@@ -51,5 +60,10 @@ export function getTasksForRole(tasks, user) {
 export function getMyProjects(projects, userId) {
     return projects.filter(
         (project) => project.ownerId === userId
+    );
+}
+export function getMyTasks(tasks, userId) {
+    return tasks.filter(
+        (task) => task.assignedTo === userId
     );
 }

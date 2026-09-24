@@ -14,7 +14,7 @@
     margin: 0 0 30px;
     text-align: center;
     font-size: 28px;
-    color: #be185d;
+    color: #8f3155;
 }
 
 .auth-container form {
@@ -26,7 +26,7 @@
 .auth-container label {
     font-size: 14px;
     font-weight: 600;
-    color: #831843;
+    color:#8f3155;
     margin-top: 8px;
 }
 
@@ -66,7 +66,7 @@
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background: #ec4899;
+    background: #8f3155;
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -91,7 +91,7 @@
 }
 
 .auth-container a {
-    color: #db2777;
+    color: #8f3155;
     font-weight: 600;
     text-decoration: none;
 }

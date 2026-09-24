@@ -33,3 +33,30 @@
     color: #8f3155;
     font-size: 15px;
 }
+.task-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.task-tabs button {
+    padding: 10px 18px;
+    border: 1px solid #e8b5c7;
+    border-radius: 10px;
+    background-color: #fff5f8;
+    color: #8f3155;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.task-tabs button:hover {
+    background-color: #fbe3eb;
+}
+
+.task-tabs button.active {
+    background-color: #8f3155;
+    color: white;
+    border-color: #8f3155;
+}

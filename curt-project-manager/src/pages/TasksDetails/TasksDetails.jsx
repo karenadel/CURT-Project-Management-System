@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TaskForm from "../Tasks/TaskForm";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getTaskById, getUserById, getProjectById } from "../../utils/helpers";
+import { getTaskById, getUserById, getProjectById ,getTaskOwner} from "../../utils/helpers";
 import { useAppContext } from "../../context/useAppContext.js";
 import StatusBadge from "../../components/common/StatusBadge";
 import PriorityBadge from "../../components/common/PriorityBadge";
@@ -58,13 +58,13 @@ function TasksDetails() {
             <h1>{task.title}</h1>
 
             <div className="task-details-actions">
-                {can(currentUser, "edit_task") && (<button
+                {(can(currentUser, "edit_task")||(getTaskOwner(projects,task)===currentUser.Id)) && (<button
                     className="task-edit-button"
                     onClick={() => setIsEditing(true)}>
                     Edit task
                 </button>)}
 
-                {can(currentUser, "delete_task") && (<button
+                {(can(currentUser, "delete_task")||(getTaskOwner(projects,task)===currentUser.Id)) && (<button
                     className="task-delete-button"
                     onClick={handleDeleteTask}>
                     Delete task
