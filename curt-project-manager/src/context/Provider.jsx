@@ -156,6 +156,15 @@ export function Provider({ children }) {
     function logout() {
         setCurrentUser(null);
     }
+    function updateTaskStatus(taskId, status) {
+        setTasks((prev) =>
+            prev.map((task) =>
+                task.Id === taskId
+                    ? { ...task, status }
+                    : task
+            )
+        );
+    }
 
     const value = {
         projects,
@@ -169,6 +178,7 @@ export function Provider({ children }) {
         deleteProject,
         addTask,
         updateTask,
+        updateTaskStatus,
         deleteTask,
         currentUser,
         setCurrentUser,

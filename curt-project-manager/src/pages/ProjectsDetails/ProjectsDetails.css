@@ -14,7 +14,7 @@
     font-size: 32px;
 }
 
-/* Buttons */
+
 
 .project-details-actions {
     display: flex;
@@ -51,7 +51,7 @@
     background-color: #e8b5c7;
 }
 
-/* Project description */
+
 
 .project-description {
     margin: 0 0 20px;
@@ -61,7 +61,7 @@
     line-height: 1.6;
 }
 
-/* Project information */
+
 
 .project-details-info {
     padding: 18px;
@@ -83,7 +83,7 @@
     font-weight: 600;
 }
 
-/* Tasks */
+
 
 .project-tasks {
     margin-bottom: 30px;
@@ -109,7 +109,7 @@
     font-size: 14px;
 }
 
-/* Back link */
+
 
 .project-back-link {
     display: inline-block;
@@ -124,7 +124,7 @@
     text-decoration: underline;
 }
 
-/* Edit mode */
+
 
 .project-details-edit-title {
     margin: 0 0 20px;
@@ -147,7 +147,7 @@
 .project-cancel-button:hover {
     background-color: #e8b5c7;
 }
-/* Add Members */
+
 
 .project-members {
     margin-bottom: 30px;
@@ -193,7 +193,6 @@
     background-color: #e8b5c7;
 }
 
-/* Add member section */
 
 .project-members > div {
     margin-top: 20px;

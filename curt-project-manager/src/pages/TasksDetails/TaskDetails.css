@@ -9,7 +9,7 @@
     box-shadow: 0 4px 12px rgba(180, 80, 120, 0.08);
 }
 
-/* Title */
+
 
 .task-details h1 {
     margin: 0 0 20px;
@@ -17,7 +17,7 @@
     font-size: 32px;
 }
 
-/* Badges */
+
 
 .task-details-badges {
     display: flex;
@@ -25,7 +25,7 @@
     margin-bottom: 25px;
 }
 
-/* Information */
+
 
 .task-details-info {
     padding: 18px;
@@ -45,7 +45,7 @@
     color: #8f3155;
 }
 
-/* Buttons */
+
 
 .task-details-actions {
     display: flex;
@@ -82,7 +82,7 @@
     background-color: #e8b5c7;
 }
 
-/* Back link */
+
 
 .task-back-link {
     display: inline-block;
@@ -97,7 +97,7 @@
     text-decoration: underline;
 }
 
-/* Edit mode */
+
 
 .task-details-edit {
     max-width: 800px;

@@ -1,13 +1,10 @@
 .task-card {
-    display: block;
     background-color: #fff5f8;
     border: 1px solid #f3c6d5;
     border-radius: 14px;
     padding: 18px;
-    text-decoration: none;
-    color: #3d2630;
-    transition: 0.2s ease;
     box-shadow: 0 2px 8px rgba(180, 80, 120, 0.08);
+    transition: 0.2s ease;
 }
 
 .task-card:hover {
@@ -16,17 +13,59 @@
     box-shadow: 0 5px 14px rgba(180, 80, 120, 0.15);
 }
 
-.task-card h3 {
-    margin: 0 0 12px;
+
+
+.task-card-link {
+    display: block;
+    text-decoration: none;
+}
+
+.task-card-link h3 {
+    margin: 0 0 14px;
     color: #9d3d61;
     font-size: 20px;
+    transition: 0.2s ease;
 }
+
+.task-card-link h3:hover {
+    color: #7a2344;
+}
+
+
 
 .task-card-badges {
     display: flex;
+    align-items: center;
     gap: 8px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
+
+
+
+.task-card-badges select {
+    padding: 5px 9px;
+    border: 1px solid #e8b5c7;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #8f3155;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.task-card-badges select:hover {
+    border-color: #d9789b;
+    background-color: #fff5f8;
+}
+
+.task-card-badges select:focus {
+    border-color: #d9789b;
+    box-shadow: 0 0 0 2px rgba(217, 120, 155, 0.15);
+}
+
 
 .task-card h4 {
     margin: 7px 0;
