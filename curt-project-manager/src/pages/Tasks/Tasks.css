@@ -60,3 +60,34 @@
     color: white;
     border-color: #8f3155;
 }
+
+.task-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.task-filters select {
+    min-width: 100px;
+    padding: 8px 10px;
+    border: 1px solid #e8b5c7;
+    border-radius: 10px;
+    background-color: #fff5f8;
+    color: #8f3155;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.task-filters select:hover {
+    background-color: #fbe3eb;
+    border-color: #d995ad;
+}
+
+.task-filters select:focus {
+    border-color: #8f3155;
+    box-shadow: 0 0 0 2px #fbe3eb;
+}
