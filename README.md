@@ -3,7 +3,7 @@
 A frontend-only team project management system built for the **Cairo University Racing Team (CURT) Software Development Team** frontend task, season 26-27. Users can create projects, break them down into tasks, assign tasks to project members, and track status, priority, and progress.
 
 > **Live demo:** [https://curt-project-management-system.vercel.app](https://curt-project-management-system.vercel.app)
-> **Demo video:** [https://drive.google.com/drive/folders/1mjV7Bde3bxl7HLdMk9kf-AfLtEnkwzuN?usp=drive_link](Demo)
+> **Demo video:** [Demo](https://drive.google.com/drive/folders/1mjV7Bde3bxl7HLdMk9kf-AfLtEnkwzuN?usp=drive_link))
 
 ---
 
